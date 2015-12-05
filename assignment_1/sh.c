@@ -91,8 +91,27 @@ runcmd(struct cmd *cmd)
 
   case '|':
     pcmd = (struct pipecmd*)cmd;
-    fprintf(stderr, "pipe not implemented\n");
-    // Your code here ...
+	if(pipe(p) < 0) {     //Create a pipe
+		fprintf(stderr, "Pipe is not created successfully.\n");
+	}
+	if(fork1() == 0){	  //the process of left cmd
+		close(1);		  //redirect the output of the left command.
+		dup(p[1]);
+		close(p[0]);	  //close other file descripter, in case that the  "read" command will be blocked, because there are some file descripters is pointing to the write file descripter of pipe. 
+		close(p[1]);
+		runcmd(pcmd->left);	
+	}
+	if(fork1() == 0){
+		close(0);
+		dup(p[0]);
+		close(p[0]);
+		close(p[1]);
+		runcmd(pcmd->right);
+	}
+	close(p[0]);
+	close(p[1]);
+	wait(&r);
+	wait(&r);
     break;
   }    
   exit(0);
