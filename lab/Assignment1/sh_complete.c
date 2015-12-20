@@ -63,7 +63,6 @@ runcmd(struct cmd *cmd)
     ecmd = (struct execcmd*)cmd;
     if(ecmd->argv[0] == 0)
       exit(0);
-    // Your code here ...
     if(access(ecmd->argv[0], F_OK) == 0) {   //If the command is found in current lib, then execute the command directly
         execv(ecmd->argv[0], ecmd->argv);
     }
