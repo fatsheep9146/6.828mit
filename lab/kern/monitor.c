@@ -24,6 +24,7 @@ struct Command {
 static struct Command commands[] = {
 	{ "help", "Display this list of commands", mon_help },
 	{ "kerninfo", "Display information about the kernel", mon_kerninfo },
+	{ "backtrace", "Display the backtrace of stacks.", mon_backtrace}
 };
 #define NCOMMANDS (sizeof(commands)/sizeof(commands[0]))
 
@@ -58,7 +59,24 @@ mon_kerninfo(int argc, char **argv, struct Trapframe *tf)
 int
 mon_backtrace(int argc, char **argv, struct Trapframe *tf)
 {
-	// Your code here.
+	//The ebp value of the program, which calls the mon_backtrace
+	int regebp = read_ebp();
+	regebp = *((int *)regebp);
+	int *ebp = (int *)regebp;
+	
+	cprintf("Stack backtrace:\n");
+	//If only we haven't pass the stack frame of i386_init
+	while((int)ebp != 0x0) {
+		cprintf("  ebp %08x", (int)ebp);
+		cprintf("  eip %08x", *(ebp+1));
+		cprintf("  args");
+		cprintf(" %08x", *(ebp+2));
+		cprintf(" %08x", *(ebp+3));
+		cprintf(" %08x", *(ebp+4));
+		cprintf(" %08x", *(ebp+5));
+		cprintf(" %08x\n", *(ebp+6));
+		ebp = (int *)(*ebp);
+	}
 	return 0;
 }
 
@@ -116,6 +134,13 @@ monitor(struct Trapframe *tf)
 	cprintf("Welcome to the JOS kernel monitor!\n");
 	cprintf("Type 'help' for a list of commands.\n");
 
+//	cprintf("%%5d  is %5d\n", -100);
+//	cprintf("%%-5d is %-5d\n", -100);
+
+//	unsigned int i = 0x00646c72;
+//	cprintf("H%x, Wo%s", 57616, &i);
+
+//	cprintf("x=%d y=%d\n",3);
 
 	while (1) {
 		buf = readline("K> ");
@@ -123,4 +148,5 @@ monitor(struct Trapframe *tf)
 			if (runcmd(buf, tf) < 0)
 				break;
 	}
+
 }
