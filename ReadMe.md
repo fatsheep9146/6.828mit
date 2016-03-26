@@ -14,6 +14,7 @@ Contents
   
   
 Resources：
+---
   I translated the lab tutorials into Chinese, and upload them to my blogs, link: <br>
     http://www.cnblogs.com/fatsheep9146/category/769143.html
     
