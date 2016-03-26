@@ -12,8 +12,9 @@ Contents
   * The `master` branch is the combination of the answers of all completed labs.
   * The `lab1` branch is the answer for lab 1, the `lab2` is the answer for lab 2, and so on.
   
-资源链接：
-  本人还记录了每个实验的结题过程，以及每个实验课报告书的中文翻译，并且整理成了博客，链接如下：
+  
+Resources：
+  I translated the lab tutorials into Chinese, and upload them to my blogs, link: <br>
     http://www.cnblogs.com/fatsheep9146/category/769143.html
     
 
