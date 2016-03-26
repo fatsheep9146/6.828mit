@@ -1,8 +1,10 @@
 MIT 6.828(Operating System Engineering) Lab Report 
 ---
+  The answers for the labs of this course. 
 
-项目内容：
-  本项目的内容是麻省理工大学操作系统课实验课的答案。
+Introduction
+---
+  MIT 6.828 is a famous course of OS, which is composed of several excellent labs. By completing those labs, we can create a tiny OS called JOS eventually. I think that it is a novel and effictive way to deepen our understanding of mechanism of OS.
 
 项目结构：
   本项目包括多个分支，其中主分支master是所有实验答案合并之后的结果。
