@@ -15,8 +15,9 @@ Contents
   
 Resources：
 ---
-  I translated the lab tutorials into Chinese, and upload them to my blogs, link: <br>
+  * I translated the lab tutorials into Chinese, and upload them to my blogs, link: <br>
     http://www.cnblogs.com/fatsheep9146/category/769143.html
-    
+  * The official reference for this course  
+    https://pdos.csail.mit.edu/6.828/2014/schedule.html
 
     
